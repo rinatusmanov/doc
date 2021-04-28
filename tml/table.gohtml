@@ -1,0 +1,24 @@
+{{ $head := .Head }}{{ $foot:= .Foot }}{{ $body:= .Body }}{{ $main := . }}{{ $main.Delimiter }}<table{{ .Attr }}>
+{{ $main.Delimiter }}    {{ .Caption  }}
+{{ $main.Delimiter }}    <thead{{$head.Attr}}>
+{{ $main.Delimiter }}
+{{ range $indexTr, $tr := $head.TrSlice }}{{ $main.Delimiter }}         <tr{{$tr.Attr}} ref="{{$main.UUID}}_table_thead_tr_{{ $indexTr }}">
+{{ range $indexTd, $td := $tr.TdSlice }}{{ $main.Delimiter }}            <{{ $td.Tag }}{{$td.Attr}} ref="{{$main.UUID}}_table_thead_tr_{{ $indexTr }}_td_{{ $indexTd }}">{{ $td.Content }}</{{ $td.Tag }}>
+{{end}}{{ $main.Delimiter }}        </tr>
+{{end}}{{ $main.Delimiter }}
+{{ $main.Delimiter }}    </thead>
+{{ $main.Delimiter }}    <tfoot>
+{{ $main.Delimiter }}
+{{ range $indexTr, $tr := $foot.TrSlice }}{{ $main.Delimiter }}         <tr{{$tr.Attr}} ref="{{$main.UUID}}_table_tfoot_tr_{{ $indexTr }}">
+{{ range $indexTd, $td := $tr.TdSlice }}{{ $main.Delimiter }}            <{{ $td.Tag }}{{$td.Attr}} ref="{{$main.UUID}}_table_thead_tr_{{ $indexTr }}_td_{{ $indexTd }}">{{ $td.Content }}</{{ $td.Tag }}>
+{{end}}{{ $main.Delimiter }}        </tr>
+{{end}}{{ $main.Delimiter }}
+{{ $main.Delimiter }}    </tfoot>
+{{ $main.Delimiter }}    <tbody>
+{{ $main.Delimiter }}
+{{ range $indexTr, $tr := $body.TrSlice }}{{ $main.Delimiter }}         <tr{{$tr.Attr}} ref="{{$main.UUID}}_table_tbody_tr_{{ $indexTr }}">
+{{ range $indexTd, $td := $tr.TdSlice }}{{ $main.Delimiter }}            <{{ $td.Tag }}{{$td.Attr}} ref="{{$main.UUID}}_table_thead_tr_{{ $indexTr }}_td_{{ $indexTd }}">{{ $td.Content }}</{{ $td.Tag }}>
+{{end}}{{ $main.Delimiter }}        </tr>
+{{end}}{{ $main.Delimiter }}
+{{ $main.Delimiter }}    </tbody>
+{{ $main.Delimiter }}</table>
